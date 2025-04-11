@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.pictopalette.LoginFragment"
+        android:label="Login" />
+
+    <fragment
+        android:id="@+id/paletteFragment"
+        android:name="com.example.pictopalette.PaletteFragment"
+        android:label="Palette">
+        <action
+            android:id="@+id/action_loginFragment_to_paletteFragment"
+            app:destination="@id/paletteFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+</navigation>

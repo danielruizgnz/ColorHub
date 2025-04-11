@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "105648571189",
+    "project_id": "colorhub-b125d",
+    "storage_bucket": "colorhub-b125d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105648571189:android:2af516e910875fe275027c",
+        "android_client_info": {
+          "package_name": "com.example.pictopalette"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "105648571189-5r5gg1o30rr0ku9udgpascsbp1r0376b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pictopalette",
+            "certificate_hash": "58f6fec7928d83b50ed0095bc5040aa2cce11994"
+          }
+        },
+        {
+          "client_id": "105648571189-f28jkdnm9r3venh127774tsoilih2rke.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCL9qieuXPI0PT-QF-S-ySQIF8sppadNRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "105648571189-f28jkdnm9r3venh127774tsoilih2rke.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
