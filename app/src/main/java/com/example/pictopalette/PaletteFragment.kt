@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.activity.result.contract.ActivityResultContracts
@@ -20,6 +21,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class PaletteFragment : Fragment() {
@@ -46,7 +48,6 @@ class PaletteFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // Mostrar datos del usuario
         firebaseUser?.let { user ->
             binding.tvUserName.text = user.displayName ?: "Usuario"
             Glide.with(this)
@@ -66,12 +67,14 @@ class PaletteFragment : Fragment() {
                 GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
             ).signOut()
 
-            // Volver a LoginFragment
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, LoginFragment())
                 .commit()
         }
 
+        binding.btnSavePalette.setOnClickListener {
+            showTitleInputDialog()
+        }
     }
 
     private fun extractColorsFromBitmap(bitmap: Bitmap) {
@@ -84,7 +87,6 @@ class PaletteFragment : Fragment() {
                     it.getDarkMutedColor(Color.GRAY),
                     it.getLightVibrantColor(Color.GRAY)
                 )
-
                 Log.d("PaletteColors", "Colores extraídos: $colors")
                 updateUIColor(colors)
             }
@@ -100,5 +102,54 @@ class PaletteFragment : Fragment() {
             }
             binding.colorPalette.addView(colorView)
         }
+    }
+
+    private fun showTitleInputDialog() {
+        val editText = EditText(requireContext())
+        editText.hint = "Título de la paleta"
+
+        android.app.AlertDialog.Builder(requireContext())
+            .setTitle("Guardar Paleta")
+            .setView(editText)
+            .setPositiveButton("Guardar") { _, _ ->
+                val title = editText.text.toString().ifBlank { "Sin título" }
+                savePaletteToFirestore(title)
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
+    }
+
+    private fun savePaletteToFirestore(title: String) {
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user == null) return
+
+        val paletteColors = mutableListOf<String>()
+        for (i in 0 until binding.colorPalette.childCount) {
+            val view = binding.colorPalette.getChildAt(i)
+            val color = (view.background as? android.graphics.drawable.ColorDrawable)?.color
+            color?.let {
+                paletteColors.add(String.format("#%06X", 0xFFFFFF and it))
+            }
+        }
+
+        if (paletteColors.isEmpty()) return
+
+        val paletteData = mapOf(
+            "title" to title,
+            "colors" to paletteColors,
+            "timestamp" to System.currentTimeMillis()
+        )
+
+        val db = Firebase.firestore
+        db.collection("users")
+            .document(user.uid)
+            .collection("palettes")
+            .add(paletteData)
+            .addOnSuccessListener {
+                Log.d("Firestore", "Paleta guardada correctamente")
+            }
+            .addOnFailureListener { e ->
+                Log.e("Firestore", "Error al guardar paleta", e)
+            }
     }
 }

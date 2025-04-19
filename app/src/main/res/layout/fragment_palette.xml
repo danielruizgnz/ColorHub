@@ -58,5 +58,13 @@
             android:text="Cerrar sesión"
             android:layout_marginTop="16dp"/>
 
+        <!-- Botón para guardar paleta -->
+        <Button
+            android:id="@+id/btnSavePalette"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar paleta"
+            android:layout_marginTop="16dp"/>
+
     </LinearLayout>
 </ScrollView>

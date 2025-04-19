@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:title="Inicio" />
+    <item
+        android:id="@+id/nav_palette"
+        android:title="Paletas" />
+    <item
+        android:id="@+id/nav_favorite_palettes"
+        android:title="Paletas Favoritas" /> <!-- Nueva opción -->
+    <item
+        android:id="@+id/nav_logout"
+        android:title="Cerrar sesión"/>
+</menu>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:padding="16dp"
@@ -6,18 +7,30 @@
     android:background="@color/black"
     android:gravity="bottom">
 
-    <TextView
-        android:id="@+id/tvUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nombre de usuario"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"/>
+    <ImageView
+        android:id="@+id/imageViewProfile"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/ic_launcher_foreground"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/circle_bg"
+        android:padding="4dp" />
 
     <TextView
-        android:id="@+id/tvUserEmail"
-        android:layout_width="wrap_content"
+        android:id="@+id/textViewName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="correo@ejemplo.com"
-        android:textColor="@android:color/white"/>
+        android:text="Nombre"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:paddingTop="8dp" />
+
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="correo@email.com"
+        android:textColor="@android:color/white"
+        android:textSize="14sp" />
 </LinearLayout>
