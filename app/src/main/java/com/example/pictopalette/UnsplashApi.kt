@@ -9,7 +9,8 @@ interface UnsplashApi {
     fun searchPhotos(
         @Query("query") query: String,
         @Query("client_id") clientId: String,
-        @Query("per_page") perPage: Int = 20
+        @Query("page") page: Int = 1,
+        @Query("per_page") perPage: Int = 30
     ): Call<UnsplashResponse>
 }
 

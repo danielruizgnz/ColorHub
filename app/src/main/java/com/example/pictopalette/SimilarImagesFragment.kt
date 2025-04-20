@@ -1,5 +1,6 @@
 package com.example.pictopalette
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,7 +14,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
 
 class SimilarImagesFragment : Fragment() {
 
@@ -36,10 +36,8 @@ class SimilarImagesFragment : Fragment() {
         }
 
         Log.d("SimilarImagesFragment", "Colores recibidos: $colors")
-
         searchImages(colors)
     }
-
 
     private fun searchImages(colors: List<String>) {
         val retrofit = Retrofit.Builder()
@@ -49,20 +47,15 @@ class SimilarImagesFragment : Fragment() {
 
         val api = retrofit.create(UnsplashApi::class.java)
 
-        // Convertir todos los colores hexadecimales a nombres generales
-        val colorNames = colors.map { hexToColorName(it) }
+        val colorNames = colors.map { getApproximateColorName(it) }
 
-        // Concatenamos todos los nombres de colores (incluyendo hex si no tiene nombre)
-        val query = colorNames.joinToString(", ") + ", color"
+        val randomPage = (1..5).random()
+        val query = colorNames.joinToString(", ") + ", aesthetic"
 
-        Log.d("SimilarImagesFragment", "Consulta de colores: $query") // Para verificar la consulta
+        Log.d("SimilarImagesFragment", "Consulta de colores: $query")
 
-        // Realizar la consulta a la API de Unsplash con la cadena de búsqueda
-        api.searchPhotos(query, clientId).enqueue(object : Callback<UnsplashResponse> {
-            override fun onResponse(
-                call: Call<UnsplashResponse>,
-                response: Response<UnsplashResponse>
-            ) {
+        api.searchPhotos(query, clientId, page = randomPage, perPage = 30).enqueue(object : Callback<UnsplashResponse> {
+            override fun onResponse(call: Call<UnsplashResponse>, response: Response<UnsplashResponse>) {
                 val images = response.body()?.results ?: return
                 binding.recyclerView.apply {
                     layoutManager = GridLayoutManager(requireContext(), 2)
@@ -76,19 +69,32 @@ class SimilarImagesFragment : Fragment() {
         })
     }
 
+    private fun getApproximateColorName(hex: String): String {
+        val hexColor = Color.parseColor(hex)
+        val r1 = Color.red(hexColor)
+        val g1 = Color.green(hexColor)
+        val b1 = Color.blue(hexColor)
 
-    private fun hexToColorName(hex: String): String {
-        return when {
-            hex.startsWith("#48D070") -> "green"
-            hex.startsWith("#987068") -> "brown"
-            hex.startsWith("#004000") -> "dark green"
-            hex.startsWith("#888888") -> "gray"
-            hex.startsWith("#D0F860") -> "light green"
-            else -> {
-                // Si no se encuentra un color mapeado, devolvemos un color genérico
-                // Por ejemplo, un color genérico para un valor hexadecimal desconocido
-                if (hex.startsWith("#")) "color" else hex
-            }
-        }
+        val colorNames = mapOf(
+            "black" to Color.rgb(0, 0, 0),
+            "white" to Color.rgb(255, 255, 255),
+            "red" to Color.rgb(255, 0, 0),
+            "green" to Color.rgb(0, 128, 0),
+            "blue" to Color.rgb(0, 0, 255),
+            "yellow" to Color.rgb(255, 255, 0),
+            "orange" to Color.rgb(255, 165, 0),
+            "purple" to Color.rgb(128, 0, 128),
+            "brown" to Color.rgb(165, 42, 42),
+            "gray" to Color.rgb(128, 128, 128),
+            "pink" to Color.rgb(255, 192, 203),
+            "light green" to Color.rgb(144, 238, 144)
+        )
+
+        return colorNames.minByOrNull { (_, rgb) ->
+            val r2 = Color.red(rgb)
+            val g2 = Color.green(rgb)
+            val b2 = Color.blue(rgb)
+            (r1 - r2).let { it * it } + (g1 - g2).let { it * it } + (b1 - b2).let { it * it }
+        }?.key ?: "color"
     }
 }
