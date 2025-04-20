@@ -98,6 +98,8 @@ class FavoritePalettesFragment : Fragment() {
                     binding.paletteColorsLayout.addView(colorView)
                 }
 
+                // Botón Compartir
+
                 binding.shareButton.setOnClickListener {
                     val text = palette.colors.joinToString(", ") { it }
                     val intent = Intent().apply {
@@ -107,6 +109,8 @@ class FavoritePalettesFragment : Fragment() {
                     }
                     startActivity(Intent.createChooser(intent, "Compartir paleta"))
                 }
+
+                // Botón Editar
 
                 binding.editButton.setOnClickListener {
                     val editText = EditText(requireContext()).apply {
@@ -139,6 +143,47 @@ class FavoritePalettesFragment : Fragment() {
                         }
                         .setNegativeButton("Cancelar", null)
                         .show()
+                }
+
+                // Botón Eliminar
+                binding.deleteButton.setOnClickListener {
+                    AlertDialog.Builder(requireContext())
+                        .setTitle("Eliminar paleta")
+                        .setMessage("¿Estás seguro de que quieres eliminar esta paleta?")
+                        .setPositiveButton("Sí") { _, _ ->
+                            firebaseUser?.let { user ->
+                                db.collection("users")
+                                    .document(user.uid)
+                                    .collection("palettes")
+                                    .document(palette.id)
+                                    .delete()
+                                    .addOnSuccessListener {
+                                        val pos = palettes.indexOfFirst { it.id == palette.id }
+                                        if (pos != -1) {
+                                            palettes.removeAt(pos)
+                                            notifyItemRemoved(pos)
+                                        }
+                                    }
+                            }
+                        }
+                        .setNegativeButton("Cancelar", null)
+                        .show()
+                }
+
+                // Al hacer clic en la paleta, abrir el fragmento con las imágenes similares
+                binding.root.setOnClickListener {
+                    val fragment = SimilarImagesFragment().apply {
+                        arguments = Bundle().apply {
+                            putStringArrayList(
+                                "colors",
+                                ArrayList(palette.colors)
+                            ) // Pasamos los colores de la paleta
+                        }
+                    }
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragment)
+                        .addToBackStack(null)
+                        .commit()
                 }
             }
         }

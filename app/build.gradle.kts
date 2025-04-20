@@ -54,7 +54,18 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:21.3.0")
     implementation(libs.play.services.auth)
 
-    implementation (libs.github.glide)
+    // Retrofit para hacer las peticiones HTTP a Unsplash
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+
+    // Picasso
+    implementation (libs.picasso)
+
+    // Glide para cargar imágenes en los ImageViews
+    implementation (libs.glide.v4120)
+    annotationProcessor (libs.compiler)
+
+    implementation(libs.github.glide)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     testImplementation(libs.junit)

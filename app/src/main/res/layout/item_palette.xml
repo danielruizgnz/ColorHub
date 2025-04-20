@@ -22,25 +22,32 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="45sp"
         android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/shareButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_share"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Compartir"
-            android:layout_marginEnd="8dp"/>
+            android:src="@android:drawable/ic_menu_share" />
 
         <ImageButton
             android:id="@+id/editButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_edit"
+            android:layout_height="match_parent"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Editar"/>
+            android:contentDescription="Editar"
+            android:src="@android:drawable/ic_menu_edit" />
+
+        <ImageButton
+            android:id="@+id/deleteButton"
+            android:layout_width="324dp"
+            android:layout_height="match_parent"
+            android:contentDescription="Eliminar"
+            android:src="@android:drawable/ic_menu_delete" />
     </LinearLayout>
 
 </LinearLayout>
