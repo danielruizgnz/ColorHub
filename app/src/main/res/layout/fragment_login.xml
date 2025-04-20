@@ -6,6 +6,15 @@
     android:gravity="center"
     android:padding="16dp">
 
+    <!-- Campo de nombre -->
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre de usuario"
+        android:inputType="textPersonName"
+        android:layout_marginTop="16dp"/>
+
     <!-- Campo de correo -->
     <EditText
         android:id="@+id/etEmail"

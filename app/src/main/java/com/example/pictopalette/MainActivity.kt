@@ -14,7 +14,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import android.widget.ImageView
 import android.widget.TextView
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, HomeFragment.OnProfilePicSelectedListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var firebaseAuth: FirebaseAuth
@@ -48,18 +48,37 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    private fun updateNavHeader() {
+    // Función para actualizar la foto de perfil en el NavDrawer
+    fun updateProfileImage(imageResource: Int) {
+        val headerView = binding.navView.getHeaderView(0)
+        val imageViewProfile = headerView.findViewById<ImageView>(R.id.imageViewProfile)
+
+        // Cambiar la imagen con Glide o directamente con setImageResource
+        Glide.with(this)
+            .load(imageResource)
+            .circleCrop()
+            .into(imageViewProfile)
+    }
+
+    fun updateNavHeader() {
         val headerView = binding.navView.getHeaderView(0)
         val imageViewProfile = headerView.findViewById<ImageView>(R.id.imageViewProfile)
         val textViewName = headerView.findViewById<TextView>(R.id.textViewName)
         val textViewEmail = headerView.findViewById<TextView>(R.id.textViewEmail)
 
         val user = firebaseAuth.currentUser
-        user?.let {
-            textViewName.text = it.displayName
-            textViewEmail.text = it.email
+        if (user != null) {
+            textViewName.text = user.displayName
+            textViewEmail.text = user.email
             Glide.with(this)
-                .load(it.photoUrl)
+                .load(user.photoUrl)
+                .circleCrop()
+                .into(imageViewProfile)
+        } else {
+            textViewName.text = "Inicie sesión"
+            textViewEmail.text = ""
+            Glide.with(this)
+                .load(R.drawable.ic_launcher_foreground) // Puedes poner una imagen por defecto
                 .circleCrop()
                 .into(imageViewProfile)
         }
@@ -87,12 +106,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     this,
                     GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
                 ).signOut()
+
+                updateNavHeader()
+
                 replaceFragment(LoginFragment())
             }
         }
 
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onProfilePicSelected(imageResource: Int) {
+        // Actualizar la imagen de perfil con la imagen seleccionada
+        updateProfileImage(imageResource)
     }
 
     override fun onBackPressed() {

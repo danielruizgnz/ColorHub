@@ -48,13 +48,13 @@ class PaletteFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        firebaseUser?.let { user ->
-            binding.tvUserName.text = user.displayName ?: "Usuario"
-            Glide.with(this)
-                .load(user.photoUrl)
-                .circleCrop()
-                .into(binding.ivUserProfile)
-        }
+//        firebaseUser?.let { user ->
+//            binding.tvUserName.text = user.displayName ?: "Usuario"
+//            Glide.with(this)
+//                .load(user.photoUrl)
+//                .circleCrop()
+//                .into(binding.ivUserProfile)
+//        }
 
         binding.btnPickImage.setOnClickListener {
             pickImageLauncher.launch("image/*")
