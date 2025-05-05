@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val headerView = binding.navView.getHeaderView(0)
         val imageViewProfile = headerView.findViewById<ImageView>(R.id.imageViewProfile)
 
-        // Cambiar la imagen con Glide o directamente con setImageResource
+        // Cambiar la imagen con Glide
         Glide.with(this)
             .load(imageResource)
             .circleCrop()

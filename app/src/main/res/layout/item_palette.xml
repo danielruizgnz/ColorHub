@@ -43,11 +43,20 @@
             android:src="@android:drawable/ic_menu_edit" />
 
         <ImageButton
+            android:id="@+id/spotifyButton"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Spotify"
+            android:src="@android:drawable/ic_media_play" />
+
+        <ImageButton
             android:id="@+id/deleteButton"
-            android:layout_width="324dp"
+            android:layout_width="272dp"
             android:layout_height="match_parent"
             android:contentDescription="Eliminar"
             android:src="@android:drawable/ic_menu_delete" />
+
     </LinearLayout>
 
 </LinearLayout>

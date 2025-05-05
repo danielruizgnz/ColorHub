@@ -1,8 +1,7 @@
 <resources>
-    <string name="app_name">PicToPalette</string>
+    <string name="app_name">ColorHub</string>
     <string name="default_web_client_id">105648571189-5r5gg1o30rr0ku9udgpascsbp1r0376b.apps.googleusercontent.com
 </string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="navigation_drawer_open">Abrir\n</string>
     <string name="navigation_drawer_close">Cerrar</string>

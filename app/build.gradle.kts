@@ -16,6 +16,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Añade este bloque para definir los placeholders del manifest
+        manifestPlaceholders["redirectSchemeName"] = "tuapp" // Reemplaza "tuapp" si usaste otro esquema
+        manifestPlaceholders["redirectHostName"] = "callback" // Reemplaza "callback" si usaste otro host
     }
 
     buildTypes {
@@ -60,6 +64,9 @@ dependencies {
 
     // Picasso
     implementation (libs.picasso)
+
+    // Spotify
+    implementation ("com.spotify.android:auth:2.0.2")
 
     // Glide para cargar imágenes en los ImageViews
     implementation (libs.glide.v4120)
