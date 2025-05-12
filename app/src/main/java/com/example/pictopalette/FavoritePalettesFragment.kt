@@ -30,16 +30,16 @@ class FavoritePalettesFragment : Fragment() {
     // Mapeo de "estados de ánimo de color" a URLs de playlists de Spotify
     // *** DEBES DEFINIR TUS PROPIOS ESTADOS DE ÁNIMO Y URLs DE PLAYLISTS AQUÍ ***
     private val moodPlaylistMap = mapOf(
-        "Energético" to "https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M", // URL de tu playlist "Energético"
-        "Tranquilo" to "https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M",    // URL de tu playlist "Tranquilo"
-        "Misterioso" to "https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M",  // URL de tu playlist "Misterioso"
-        "Feliz" to "https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M",      // URL de tu playlist "Feliz"
-        "Melancólico" to "https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M", // URL de tu playlist "Melancólico"
+        "Energético" to "https://open.spotify.com/playlist/22VqCWv2qJeigtvXYHOTZT?si=b2a74d6c599042f9", // URL de tu playlist "Energético"
+        "Tranquilo" to "https://open.spotify.com/playlist/4bpDFJNxCJwmKflH0ZYZv7?si=f15ccfb23463476a",    // URL de tu playlist "Tranquilo"
+        "Misterioso" to "https://open.spotify.com/playlist/0yjaFJEplBoDGYw4WnNWNq?si=80b6c3e3e18f4330",  // URL de tu playlist "Misterioso"
+        "Feliz" to "https://open.spotify.com/playlist/37i9dQZF1DZ06evO3x0WPe?si=fbc148f15bff437e",      // URL de tu playlist "Feliz"
+        "Melancólico" to "https://open.spotify.com/playlist/37i9dQZF1E8Kht3vDrYdUN?si=2e67164374974b46", // URL de tu playlist "Melancólico"
         // Añade más estados de ánimo y sus URLs correspondientes
     )
 
     // Puedes tener una URL de playlist por defecto si no se encuentra un mapeo específico
-    private val DEFAULT_PLAYLIST_URL = "https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M" // URL de tu playlist por defecto
+    private val DEFAULT_PLAYLIST_URL = "https://open.spotify.com/playlist/1PMTi5kHWxwpuOnWqdwsw3?si=264cb953ff994467" // URL de tu playlist por defecto
 
 
     override fun onCreateView(

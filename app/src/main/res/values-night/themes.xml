@@ -1,7 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.PicToPalette" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <style name="Theme.PicToPalette" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/darkModePrimary</item>
+        <item name="colorPrimaryVariant">@color/darkModePrimaryVariant</item>
+        <item name="colorOnPrimary">@color/darkModeOnPrimary</item>
+
+        <item name="colorSecondary">@color/darkModeAccent</item>
+        <item name="colorSecondaryVariant">@color/darkModeAccent</item>
+        <item name="colorOnSecondary">@color/darkModeOnAccent</item>
+
+        <item name="android:colorBackground">@color/darkModeBackground</item>
+        <item name="colorSurface">@color/darkModeSurface</item>
+        <item name="colorOnSurface">@color/darkModeOnSurface</item>
+
+        <item name="android:textColorPrimary">@color/darkModeOnBackground</item>
+        <item name="android:textColorSecondary">@color/darkModeSecondaryText</item>
+        <item name="android:textColor">@color/darkModeOnBackground</item>
+
+
+        <item name="android:windowBackground">@color/darkModeBackground</item>
+        <item name="android:navigationBarColor">@color/darkModeSurface</item>
+        <item name="android:statusBarColor">@color/darkModeStatusBar</item>
+
+        <item name="android:fontFamily">@font/poppins</item>
+
     </style>
 </resources>

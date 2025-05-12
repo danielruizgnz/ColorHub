@@ -70,6 +70,7 @@ dependencies {
 
     // Glide para cargar imágenes en los ImageViews
     implementation (libs.glide.v4120)
+    implementation(libs.androidx.preference.ktx)
     annotationProcessor (libs.compiler)
 
     implementation(libs.github.glide)

@@ -5,4 +5,40 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="navigation_drawer_open">Abrir\n</string>
     <string name="navigation_drawer_close">Cerrar</string>
+
+    <!-- Tutorial -->
+    <string name="tutorial_title">Tutorial de ColorHub</string>
+    <string name="tutorial_intro">¡Bienvenido a ColorHub! Esta aplicación te ayuda a descubrir y guardar paletas de colores inspiradas en imágenes, conectarlas con música y encontrar imágenes similares.</string>
+
+    <string name="tutorial_section_1_title">1. Inicio de Sesión</string>
+    <string name="tutorial_section_1_content">Al abrir la aplicación por primera vez, deberás iniciar sesión. Puedes usar tu cuenta de Google para acceder a todas las funcionalidades y guardar tus paletas favoritas.</string>
+
+    <string name="tutorial_section_2_title">2. Elige tu Foto de Perfil</string>
+    <string name="tutorial_section_2_content">Una vez dentro, en la pantalla de "Inicio", puedes personalizar tu perfil seleccionando una foto. Simplemente toca una de las imágenes disponibles en la cuadrícula para establecerla como tu foto de perfil en el Navigation Drawer.\n\nTambién encontrarás un interruptor para activar o desactivar el **Modo Oscuro** de la aplicación, adaptando la interfaz a tus preferencias visuales.</string>
+
+    <string name="tutorial_section_3_title">3. Genera una Paleta desde una Foto</string>
+    <string name="tutorial_section_3_content">Ve a la sección "Paletas" (probablemente desde el Navigation Drawer). Aquí podrás:\n\n* **Seleccionar una foto:** Toca el botón o área designada para elegir una imagen de tu galería o tomar una nueva foto con la cámara.\n* **Generar la paleta:** La aplicación analizará automáticamente la imagen para extraer los colores más representativos y generar una paleta de colores.</string>
+
+    <string name="tutorial_section_4_title">4. Guarda tu Paleta Favorita</string>
+    <string name="tutorial_section_4_content">Una vez generada una paleta que te guste, verás una opción para guardarla (normalmente un botón de "Guardar" o un icono de corazón/estrella). Al guardarla, la paleta se añadirá a tu colección personal en la sección "Paletas Favoritas".</string>
+
+    <string name="tutorial_section_5_title">5. Explora tus Paletas Favoritas</string>
+    <string name="tutorial_section_5_content">Accede a la sección "Paletas Favoritas" desde el Navigation Drawer. Aquí verás todas las paletas que has guardado. Cada elemento de la lista muestra el título de la paleta y los colores que la componen.</string>
+
+    <string name="tutorial_section_6_title">6. Edita una Paleta Guardada</string>
+    <string name="tutorial_section_6_content">En la lista de "Paletas Favoritas", cada paleta tiene opciones:\n\n* **Editar (icono de lápiz):** Te permite cambiar el título de la paleta guardada. Toca el icono, ingresa el nuevo título en el diálogo que aparece y guarda los cambios.\n* **Eliminar (icono de papelera):** Te permite eliminar la paleta de tu colección. Toca el icono, confirma en el diálogo y la paleta será eliminada.</string>
+
+    <string name="tutorial_section_7_title">7. Comparte tu Paleta</string>
+    <string name="tutorial_section_7_content">Cada paleta guardada tiene un botón de "Compartir". Al tocarlo, podrás compartir los códigos de color hexadecimales de la paleta con otras aplicaciones (mensajería, correo, notas, etc.).</string>
+
+    <string name="tutorial_section_8_title">8. Conecta con Música (Playlist de Spotify)</string>
+    <string name="tutorial_section_8_content">Junto a cada paleta guardada, encontrarás un botón con el logo de Spotify. Al tocarlo, la aplicación analizará los colores de la paleta y **abrirá un enlace a una playlist de Spotify** que hemos curado y que creemos que encaja con el estado de ánimo o estilo de esa combinación de colores.\n\n*(Nota: Esto abrirá la aplicación de Spotify o el navegador web para mostrar la playlist. No crea una nueva playlist en tu cuenta de Spotify).*</string>
+
+    <string name="tutorial_section_9_title">9. Encuentra Imágenes Similares</string>
+    <string name="tutorial_section_9_content">Al tocar en cualquier parte de un elemento de paleta en la lista de "Paletas Favoritas" (excepto los botones de acción), navegarás a una nueva pantalla. Esta pantalla te mostrará imágenes que son visualmente similares a la paleta de colores seleccionada.</string>
+
+    <string name="tutorial_section_10_title">10. Información de la App y Salir</string>
+    <string name="tutorial_section_10_content">Desde el Navigation Drawer principal, en la sección "Otros", encontrarás:\n\n* **Información de la App:** Muestra un diálogo con detalles sobre la aplicación, como el nombre, la versión y el desarrollador.\n* **Salir:** Muestra un diálogo de confirmación para cerrar completamente la aplicación.</string>
+
+    <string name="tutorial_footer">¡Esperamos que disfrutes usando ColorHub para explorar el mundo del color y la música!</string>
 </resources>

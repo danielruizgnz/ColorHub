@@ -13,6 +13,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import android.widget.ImageView
 import android.widget.TextView
+import android.app.AlertDialog // Importar AlertDialog para los diálogos
+import android.content.pm.PackageManager // Importar PackageManager para obtener la versión de la app
+import android.util.Log
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, HomeFragment.OnProfilePicSelectedListener {
 
@@ -94,13 +98,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         transaction.commit()
     }
 
-
+    // Método llamado cuando se selecciona un item del Navigation Drawer
     override fun onNavigationItemSelected(item: android.view.MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_home -> replaceFragment(HomeFragment())
             R.id.nav_palette -> replaceFragment(PaletteFragment())
-            R.id.nav_favorite_palettes -> replaceFragment(FavoritePalettesFragment())  // Aquí agregamos el fragmento de Paletas Favoritas
+            R.id.nav_favorite_palettes -> replaceFragment(FavoritePalettesFragment())
             R.id.nav_logout -> {
+                // Lógica de cerrar sesión existente
                 FirebaseAuth.getInstance().signOut()
                 GoogleSignIn.getClient(
                     this,
@@ -111,22 +116,72 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                 replaceFragment(LoginFragment())
             }
+            // === MANEJO DE LOS NUEVOS ELEMENTOS DEL NAVIGATION DRAWER ===
+            R.id.nav_tutorial -> {
+                // Si se selecciona "Tutorial", reemplazar el fragmento actual con TutorialFragment
+                replaceFragment(TutorialFragment())
+            }
+            R.id.nav_about -> {
+                // Si se selecciona "Información de la App", mostrar el diálogo de información
+                showAboutDialog()
+            }
+            R.id.nav_exit -> {
+                // Si se selecciona "Salir", mostrar el diálogo de confirmación
+                showExitConfirmationDialog()
+            }
         }
 
+        // Cerrar el Navigation Drawer después de seleccionar un item
         binding.drawerLayout.closeDrawer(GravityCompat.START)
-        return true
+        return true // Indica que el item ha sido manejado
     }
 
     override fun onProfilePicSelected(imageResource: Int) {
-        // Actualizar la imagen de perfil con la imagen seleccionada
         updateProfileImage(imageResource)
     }
 
+    // Manejar el botón de retroceso del sistema
     override fun onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }
+    }
+
+    // === IMPLEMENTACIÓN DE LOS DIÁLOGOS ===
+
+    // Diálogo de confirmación para salir de la app
+    private fun showExitConfirmationDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Salir de la App")
+            .setMessage("¿Estás seguro de que quieres salir?")
+            .setPositiveButton("Sí") { dialog, which ->
+                finish()
+            }
+            .setNegativeButton("No", null)
+            .show()
+    }
+
+    // Diálogo de información de la app
+    private fun showAboutDialog() {
+        var appVersion = "Desconocida"
+        try {
+            val packageInfo = packageManager.getPackageInfo(packageName, 0)
+            appVersion =
+                packageInfo.versionName.toString()
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+            Log.e("MainActivity", "Error al obtener la versión de la app", e)
+        }
+
+        AlertDialog.Builder(this)
+            .setTitle("Acerca de: ")
+            .setMessage("Nombre de la App: ColorHub\n" +
+                    "Versión: $appVersion\n" +
+                    "Desarrollador: Daniel Ruiz\n" +
+                    "© 2025")
+            .setPositiveButton("Aceptar", null)
+            .show()
     }
 }

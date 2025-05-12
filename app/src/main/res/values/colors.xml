@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryColor">#F06292</color> <!-- Rosa artístico -->
+    <color name="primaryColor">#F06292</color>
     <color name="primaryDarkColor">#BA2D65</color>
-    <color name="accentColor">#FFD54F</color> <!-- Amarillo pastel -->
-    <color name="backgroundColor">#FFFFFF</color> <!-- Blanco -->
-    <color name="surfaceColor">#F5F5F5</color> <!-- Gris muy claro -->
+    <color name="accentColor">#FFD54F</color>
+    <color name="backgroundColor">#FFFFFF</color>
+    <color name="surfaceColor">#F5F5F5</color>
     <color name="textColor">#212121</color>
     <color name="secondaryTextColor">#757575</color>
+    <color name="darkModeBackground">#121212</color>
+    <color name="darkModeSurface">#1E1E1E</color>
+    <color name="darkModeOnBackground">#FFFFFF</color>
+    <color name="darkModeOnSurface">#FFFFFF</color>
+    <color name="darkModePrimary">#F48FB1</color>
+    <color name="darkModePrimaryVariant">#E91E63</color>
+    <color name="darkModeOnPrimary">#000000</color>
+    <color name="darkModeAccent">#FFECB3</color>
+    <color name="darkModeOnAccent">#000000</color>
+    <color name="darkModeSecondaryText">#BDBDBD</color>
+    <color name="darkModeStatusBar">#000000</color>
 </resources>
